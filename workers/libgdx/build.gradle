@@ -3,6 +3,7 @@ buildscript {
         mavenLocal()
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url 'http://repo.maven.apache.org/maven2' }
         jcenter()
     }
     dependencies {
@@ -31,12 +32,12 @@ allprojects {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url 'http://repo.maven.apache.org/maven2' }
     }
 }
 
 project(":desktop") {
     apply plugin: "java"
-
 
     dependencies {
         compile project(":core")
@@ -88,11 +89,11 @@ project(":html") {
 project(":core") {
     apply plugin: "java"
 
-
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.ashley:ashley:$ashleyVersion"
+        compile project(":worker-sdk")
     }
 }
 
@@ -110,6 +111,7 @@ project(":ios") {
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-ios"
     }
 }
+
 
 tasks.eclipse.doLast {
     delete ".project"

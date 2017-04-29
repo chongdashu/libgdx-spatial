@@ -109,6 +109,15 @@ gradle-app.setting
 /ios/build/
 /ios-moe/build/
 
+## SpatialOS
+.spatialos
+/worker-sdk
+
+
+
 ## OS Specific
 .DS_Store
 Thumbs.db
+
+
+

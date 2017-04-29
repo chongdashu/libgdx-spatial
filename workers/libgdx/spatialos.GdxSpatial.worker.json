@@ -1,0 +1,22 @@
+{
+  "build": {
+    "tasks_filename": "spatialos.java.build.json"
+  },
+  "bridge": {
+    "worker_attribute_set": {
+      "attributes": [
+        "gdx_spatial"
+      ]
+    },
+    "entity_interest": {
+      "range_entity_interest": {
+        "radius": 2
+      }
+    },
+    "streaming_query": [],
+    "component_delivery": {
+      "default": "RELIABLE_ORDERED",
+      "checkout_all_initially": true
+    }
+  }
+}
