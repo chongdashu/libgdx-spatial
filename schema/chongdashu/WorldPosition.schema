@@ -1,0 +1,6 @@
+package com.chongdashu;
+
+component WorldPosition {
+  id = 1001;
+  EntityPosition position = 1; 
+}
