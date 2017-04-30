@@ -75,3 +75,5 @@
   ```
 
 - Had to add `"worker-sdk"` to `settings.gradle`.
+
+- Got snapshot generation working. Hardest bit was setting up the worker attributes. Still unintuitive and rather complex.
