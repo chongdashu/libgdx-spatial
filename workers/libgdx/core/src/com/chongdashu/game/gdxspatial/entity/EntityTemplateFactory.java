@@ -21,7 +21,7 @@ public class EntityTemplateFactory {
         SnapshotEntity entity = new SnapshotEntity("Player");
 
         // Read Authority
-        WorkerRequirementSet readAccess = CommonWorkerRequirements.GdxClientOnly();
+        WorkerRequirementSet readAccess = CommonWorkerRequirements.AllCommonWorkers();
 
         // Write Authority
         Map<Integer, WorkerRequirementSet> write_access = new HashMap<>();
@@ -30,7 +30,7 @@ public class EntityTemplateFactory {
         entity.add(WorldPosition.class, new WorldPositionData(new Coordinates(0,0,0)));
 
         // Component writers
-        write_access.put(WorldPosition.COMPONENT_ID, CommonWorkerRequirements.GdxClientOnly());
+        write_access.put(WorldPosition.COMPONENT_ID, CommonWorkerRequirements.LibGdxClientOnly());
 
         // -- Set ACLs and Requirements on the Entity
         entity.add(EntityAcl.class, new EntityAclData(
