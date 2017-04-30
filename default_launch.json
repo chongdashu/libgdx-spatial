@@ -14,9 +14,7 @@
     {
       "worker_type": "UnityWorker",
       "load_balancing": {
-        "auto_hex_grid": {
-          "num_workers": 1
-         }
+        "singleton_worker": {}
       },
       "permissions": [{
         "all": {}
@@ -40,7 +38,7 @@
       }]
     },
     {
-      "worker_type": "GdxSpatial",
+      "worker_type": "LibGdxClient",
       "permissions": [{
         "entity_creation": {
           "allow": false

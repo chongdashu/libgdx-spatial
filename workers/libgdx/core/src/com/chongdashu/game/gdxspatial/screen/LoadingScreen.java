@@ -8,16 +8,20 @@ import com.chongdashu.game.gdxspatial.GdxSpatialGame;
 import com.chongdashu.game.gdxspatial.asset.Assets;
 import com.chongdashu.game.gdxspatial.spatialos.WorkerConnection;
 
-public class MainMenuScreen extends ScreenAdapter {
+import java.io.IOException;
+
+public class LoadingScreen extends ScreenAdapter {
 
     private final GdxSpatialGame game;
     private final OrthographicCamera guiCam;
 
-    public MainMenuScreen(GdxSpatialGame game) {
+    public LoadingScreen(GdxSpatialGame game) throws IOException {
         this.game = game;
 
         guiCam = new OrthographicCamera(1920, 1080);
         guiCam.position.set(1920 / 2, 1080 / 2, 0);
+
+        WorkerConnection.connect();
     }
 
     @Override
@@ -27,13 +31,18 @@ public class MainMenuScreen extends ScreenAdapter {
     }
 
     protected void Update() {
-        if (WorkerConnection.isConnectedToSpatialOS()) {
-            try {
-                WorkerConnection.update();
+        if (WorkerConnection.isConnectedToSpatialOS())
+        {
+            if (WorkerConnection.isConnectedToSpatialOS()) {
+                game.setScreen(new MainMenuScreen(game));
+                return;
             }
-            catch (InterruptedException e) {
-                e.printStackTrace();
+            else {
+                System.out.println("Exiting game...");
+                Gdx.app.exit();
+                return;
             }
+
         }
     }
 
@@ -41,7 +50,7 @@ public class MainMenuScreen extends ScreenAdapter {
 
         // GL
         GL20 gl = Gdx.gl;
-        gl.glClearColor(1, 0, 0, 1);
+        gl.glClearColor(0, 0, 0, 1);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Camera

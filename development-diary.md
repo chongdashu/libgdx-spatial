@@ -1,6 +1,20 @@
-
-
 ## April
+
+### Sun, 30-April 2017
+
+- Refactored the worker and attribute requirement sets as it was rather confusing.
+
+- Redid the game code to not put everything into the main class `GdxSpatialGame` and instead to use screens; this was done based on the reworked Super Jumper example:
+  https://github.com/saltares/ashley-superjumper/blob/master/core/src/com/siondream/superjumper/MainMenuScreen.java
+
+- Trying to think of a simple game that can be made. Looked at some demos.
+
+- Worker was making connection to SpatialOS, but not appearing in the world viewer. Turns out that I forgot to make sure that the worker name was synced up in `default_launch.json` and `spatialos.LibGdxClient.worker.json`
+
+- Also, handling the connection object was weird, because it was placed in a `try (Connection connection = ...)`. Just made it simpler now.
+
+![Image showing the world viewer with the connected LibGdx Java Worker client](docs/img/2017-04.-30-world-viewer-with-libgdx-client.png "Logo Title Text 1")
+
 
 ### Sat, 29-April 2017
 

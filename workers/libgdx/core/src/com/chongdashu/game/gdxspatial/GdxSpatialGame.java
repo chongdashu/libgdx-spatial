@@ -6,7 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.chongdashu.game.gdxspatial.asset.Assets;
+import com.chongdashu.game.gdxspatial.screen.LoadingScreen;
 import com.chongdashu.game.gdxspatial.screen.MainMenuScreen;
+
+import java.io.IOException;
 
 public class GdxSpatialGame extends Game {
 	public SpriteBatch spriteBatch;
@@ -15,8 +18,12 @@ public class GdxSpatialGame extends Game {
 	public void create () {
 		spriteBatch = new SpriteBatch();
         Assets.load();
-        setScreen(new MainMenuScreen(this));
-	}
+        try {
+            setScreen(new LoadingScreen(this));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public void render () {
