@@ -1,5 +1,10 @@
 ## April
 
+### Mon, 01-May 2017
+
+- The worker connection is blocking, causing the window the freeze up. Probably will need to async this up. Found something for libGDX here:
+  https://gamedev.stackexchange.com/a/112391/18095
+
 ### Sun, 30-April 2017
 
 - Refactored the worker and attribute requirement sets as it was rather confusing.
@@ -13,7 +18,7 @@
 
 - Also, handling the connection object was weird, because it was placed in a `try (Connection connection = ...)`. Just made it simpler now.
 
-![Image showing the world viewer with the connected LibGdx Java Worker client](docs/img/2017-04.-30-world-viewer-with-libgdx-client.png "Logo Title Text 1")
+![Image showing the world viewer with the connected libGdx Java Worker client](docs/img/2017-04.-30-world-viewer-with-libgdx-client.png "World viewer with libGDX client")
 
 
 ### Sat, 29-April 2017

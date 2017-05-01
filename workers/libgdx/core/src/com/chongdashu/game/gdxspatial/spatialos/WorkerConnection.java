@@ -1,6 +1,8 @@
 package com.chongdashu.game.gdxspatial.spatialos;
 
+import com.badlogic.gdx.utils.async.AsyncExecutor;
 import com.badlogic.gdx.utils.async.AsyncResult;
+import com.badlogic.gdx.utils.async.AsyncTask;
 import improbable.worker.*;
 
 import java.io.IOException;
@@ -8,7 +10,8 @@ import java.util.UUID;
 
 public class WorkerConnection {
 
-    AsyncResult<Void> connectTask;
+    static AsyncExecutor asyncExecutor = new AsyncExecutor(10);
+    static AsyncResult<Void> connectTask;
     private static Connection connection;
     private static boolean isConnected;
     private static Dispatcher dispatcher;
@@ -28,21 +31,31 @@ public class WorkerConnection {
         System.out.println("    workerType: " + parameters.workerType);
         System.out.println("    workerType: " + parameters.workerId);
 
-        connection = Connection.connectAsync(hostname, port, parameters).get();
-        isConnected = connection.isConnected();
 
-        if (connection.isConnected()) {
-            System.out.println("Successfully connected to SpatialOS");
-            dispatcher = new Dispatcher();
-        }
-        else {
-            System.out.println("Failed to connect to SpatialOS");
-        }
+
+        //create our async task that runs our async method
+        connectTask = asyncExecutor.submit(new AsyncTask<Void>() {
+            public Void call() {
+
+                connection = Connection.connectAsync(hostname, port, parameters).get();
+                isConnected = connection.isConnected();
+
+                if (connection.isConnected()) {
+                    System.out.println("Successfully connected to SpatialOS");
+                    dispatcher = new Dispatcher();
+                }
+                else {
+                    System.out.println("Failed to connect to SpatialOS");
+                }
+                return null;
+            }
+        });
+
     }
 
     public static boolean isConnectedToSpatialOS()
     {
-        return dispatcher != null;
+        return connectTask.isDone() && dispatcher != null;
     }
 
     public static void update() throws InterruptedException {
