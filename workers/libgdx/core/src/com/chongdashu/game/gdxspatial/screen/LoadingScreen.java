@@ -31,7 +31,7 @@ public class LoadingScreen extends ScreenAdapter {
     }
 
     protected void Update() {
-        if (WorkerConnection.isConnectedToSpatialOS())
+        if (WorkerConnection.isConnectionAttemptCompleted())
         {
             if (WorkerConnection.isConnectedToSpatialOS()) {
                 game.setScreen(new MainMenuScreen(game));
@@ -42,7 +42,6 @@ public class LoadingScreen extends ScreenAdapter {
                 Gdx.app.exit();
                 return;
             }
-
         }
     }
 

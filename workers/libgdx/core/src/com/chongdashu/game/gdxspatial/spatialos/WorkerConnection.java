@@ -31,9 +31,7 @@ public class WorkerConnection {
         System.out.println("    workerType: " + parameters.workerType);
         System.out.println("    workerType: " + parameters.workerId);
 
-
-
-        //create our async task that runs our async method
+         //create our async task that runs our async method
         connectTask = asyncExecutor.submit(new AsyncTask<Void>() {
             public Void call() {
 
@@ -51,6 +49,11 @@ public class WorkerConnection {
             }
         });
 
+    }
+
+    public static boolean isConnectionAttemptCompleted()
+    {
+        return connectTask.isDone();
     }
 
     public static boolean isConnectedToSpatialOS()
